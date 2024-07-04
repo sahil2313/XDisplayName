@@ -21,7 +21,11 @@ const DisplayName = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    setShowName(true);
+    if (formData.firstname && formData.lastname) {
+      setShowName(true);
+    } else {
+      setShowName(false);
+    }
   };
 
   return (
@@ -52,11 +56,9 @@ const DisplayName = () => {
         </div>
         <button type="submit">Submit</button>
       </form>
-      <p className="display">
-        {showName
-          ? ` Full Name : ${formData.firstname} ${formData.lastname}`
-          : ""}
-      </p>
+      {showName && (
+        <p className="display">Full Name : {formData.firstname} {formData.lastname}</p>
+      )}
     </div>
   );
 };
